@@ -9,7 +9,7 @@ const extractDetails = async (devicesUrls) => {
         await devicesUrls.map((url) => extractUrls(url, phoneSelector))
     );
 
-    return phonesUrl;
+    return phonesUrl.reduce((a, b) => a.concat(b));
 };
 
 module.exports = {
