@@ -1,0 +1,24 @@
+{
+  "name": "Web-crawler",
+  "version": "1.0.0",
+  "description": "Node.js and databases Teamwork assignment- https://in.thecamp.me/resource/-Project-Assignment/4Z2SvRlg/JS-Nov-17-Module-3/6qZhL%2BTF",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atanasovam/Web-crawler.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/atanasovam/Web-crawler/issues"
+  },
+  "homepage": "https://github.com/atanasovam/Web-crawler#readme",
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "jsdom": "^11.6.2"
+  }
+}
