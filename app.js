@@ -1,6 +1,6 @@
 const {
     extractPagesUrls,
-} = require('./parse-data/pages-urls');
+} = require('./parse-data/get-urls/pages-urls');
 
 const {
     extractDetails,
