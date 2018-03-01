@@ -1,6 +1,6 @@
 const {
     extractUrls,
-} = require('../parse-data/extract-urls');
+} = require('./extract-urls');
 
 const extractDetails = async (devicesUrls) => {
     const phoneSelector = '.product-box .box .text h2 a';
