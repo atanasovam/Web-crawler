@@ -26,26 +26,6 @@ const extractPhoneDetails = async (phoneUrls) => {
                 }
             });
 
-            // const characteristics =
-            // new Characteristics
-            // (/* procuctBrand, model, price, ram, os, displaySize */);
-            /* new Characteristics instead of ... */
-            // const characteristics = {
-            //     price: price,
-            //     ram: {
-            //         title: ram.title,
-            //         params: ram.params,
-            //     },
-            //     os: {
-            //         title: os.title,
-            //         params: os.params,
-            //     },
-            //     displaySize: {
-            //         title: size.title,
-            //         params: size.params,
-            //     },
-            // };
-            /** */
             return;
         } catch (err) {
             console.log('-'.repeat(30));
@@ -59,9 +39,30 @@ module.exports = {
     extractPhoneDetails,
 };
 
+const test = () => {
+    /* const characteristics =
+    new Characteristics
+    ( procuctBrand, model, price, ram, os, displaySize );
+     new Characteristics instead of ...
+    const characteristics = {
+        price: price,
+        ram: {
+            title: ram.title,
+            params: ram.params,
+        },
+        os: {
+            title: os.title,
+            params: os.params,
+        },
+        displaySize: {
+            title: size.title,
+            params: size.params,
+        },
+    };
 
-        /* const [size, ram, os] = [
-            generateParams($(characteristicsList[2])),
-            generateParams($(characteristicsList[8])),
-            generateParams($(characteristicsList[17])),
-        ]; */
+     const [size, ram, os] = [
+        generateParams($(characteristicsList[2])),
+        generateParams($(characteristicsList[8])),
+        generateParams($(characteristicsList[17])),
+    ]; */
+};

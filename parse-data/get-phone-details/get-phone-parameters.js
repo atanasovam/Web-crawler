@@ -20,7 +20,7 @@ const extractCharacteristics = (characteristics) => {
 
     if (verifyToken(key)) {
         if (val === '<span class="option no">НЕ</span>\n\t\t\t\t\t\t\t\t\t') {
-            val = 'No';
+            val = 'NO';
         }
         return [key, val];
     }
