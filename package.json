@@ -4,7 +4,9 @@
   "description": "Node.js and databases Teamwork assignment- https://in.thecamp.me/resource/-Project-Assignment/4Z2SvRlg/JS-Nov-17-Module-3/6qZhL%2BTF",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "add-migration": "node ./node_modules/sequelize-auto-migrations/bin/makemigration.js",
+    "migrate": "./node_modules/.bin/sequelize db:migrate"
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,11 @@
   "homepage": "https://github.com/atanasovam/Web-crawler#readme",
   "dependencies": {
     "jquery": "^3.3.1",
-    "jsdom": "^11.6.2"
+    "jsdom": "^11.6.2",
+    "mysql": "github:mysqljs/mysql",
+    "mysql2": "^1.5.2",
+    "sequelize": "^4.35.1",
+    "sequelize-auto-migrations": "^1.0.2",
+    "sequelize-cli": "^4.0.0"
   }
 }

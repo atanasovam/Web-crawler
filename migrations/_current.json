@@ -1,0 +1,148 @@
+{
+    "tables": {
+        "Brands": {
+            "tableName": "Brands",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "name": {
+                    "allowNull": false,
+                    "validate": {
+                        "notNull": true,
+                        "min": 5,
+                        "max": 20
+                    },
+                    "seqType": "Sequelize.STRING(20)"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "Details": {
+            "tableName": "Details",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "price": {
+                    "allowNull": false,
+                    "validate": {
+                        "notNull": true,
+                        "min": 2,
+                        "max": 10
+                    },
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "cpu": {
+                    "allowNull": false,
+                    "validate": {
+                        "notNull": true,
+                        "min": 2,
+                        "max": 10
+                    },
+                    "seqType": "Sequelize.STRING(10)"
+                },
+                "ram": {
+                    "allowNull": false,
+                    "validate": {
+                        "notNull": true,
+                        "min": 2,
+                        "max": 10
+                    },
+                    "seqType": "Sequelize.STRING(10)"
+                },
+                "os": {
+                    "allowNull": false,
+                    "validate": {
+                        "notNull": true,
+                        "min": 2,
+                        "max": 10
+                    },
+                    "seqType": "Sequelize.STRING(10)"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "Phones": {
+            "tableName": "Phones",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "model": {
+                    "allowNull": false,
+                    "validate": {
+                        "notNull": true,
+                        "min": 2,
+                        "max": 10
+                    },
+                    "seqType": "Sequelize.STRING(10)"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "Stores": {
+            "tableName": "Stores",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "name": {
+                    "allowNull": false,
+                    "validate": {
+                        "notNull": true,
+                        "min": 5,
+                        "max": 20
+                    },
+                    "seqType": "Sequelize.STRING(20)"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        }
+    },
+    "revision": 1
+}
