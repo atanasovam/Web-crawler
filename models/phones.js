@@ -2,7 +2,6 @@ module.exports = (sequelize, DataTypes) => {
     const Phone = sequelize.define('Phone', {
         model: {
             type: DataTypes.STRING(10),
-            // unique: true,
             allowNull: false,
             validate: {
                 notNull: true,
