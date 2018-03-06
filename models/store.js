@@ -12,6 +12,11 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     Store.associate = (models) => {
+        const {
+            Phones,
+        } = models;
+
+        Store.hasOne(Phones);
     };
 
     return Store;

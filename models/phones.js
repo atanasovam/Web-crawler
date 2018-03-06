@@ -1,5 +1,14 @@
 module.exports = (sequelize, DataTypes) => {
-    const Phone = sequelize.define('Phone', {
+    const Phones = sequelize.define('Phones', {
+        brand: {
+            type: DataTypes.STRING(20),
+            allowNull: false,
+            validate: {
+                notNull: true,
+                min: 5,
+                max: 20,
+            },
+        },
         model: {
             type: DataTypes.STRING(10),
             allowNull: false,
@@ -11,8 +20,17 @@ module.exports = (sequelize, DataTypes) => {
         },
     });
 
-    Phone.associate = (models) => {
+    Phones.associate = (models) => {
+        const {
+            Store,
+            Details,
+        } = models;
+
+        Phones.hasOne(Store);
+        Store.hasMany(Phones);
+
+        Phones.hasOne(Details);
     };
 
-    return Phone;
+    return Phones;
 };
