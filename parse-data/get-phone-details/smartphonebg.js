@@ -9,21 +9,25 @@ const extractPhoneDetails = async (phonesUrls) => {
 
             const price = $('.price-container.update-price')
                 .attr('data-original-price');
-            const characteristicsObj = { price: price };
-            console.log(price);
 
-            const characteristicsList = Array.from(
-                $('.tab.tab-characteristics .table-characteristics tr')
-            );
+            const brand = $($('#content article meta')[1])
+                .attr('content');
 
-            characteristicsList.forEach((characteristics) => {
-                const params = [
-                    $(characteristics).children()[0].innerHTML,
-                    $(characteristics).children()[1].innerHTML,
-                ];
+            const displaySize;
+            const characteristicsObj = {
+                price: price,
+                brand: brand,
+                display_size: displaySize,
+            };
 
-                console.log(params);
-            });
+            // characteristicsList.forEach((characteristics) => {
+            //     const params = [
+            //         $(characteristics).children()[0].innerHTML,
+            //         $(characteristics).children()[1].innerHTML,
+            //     ];
+
+            //     console.log(params);
+            // });
             return characteristicsObj;
         }));
 
