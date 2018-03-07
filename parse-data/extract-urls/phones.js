@@ -1,8 +1,13 @@
 const {
     extractUrls,
-} = require('./extract-urls');
+} = require('./pages');
 
-const extractDetails = async (devicesUrls) => {
+const extractPagesUrls = async (url, selector) => {
+    const pages = await extractUrls(url, selector);
+    return pages;
+};
+
+const extractPhones = async (devicesUrls) => {
     const phoneSelector = '.product-box .box .text h2 a';
 
     const phonesUrl = await Promise.all(
@@ -13,5 +18,6 @@ const extractDetails = async (devicesUrls) => {
 };
 
 module.exports = {
-    extractDetails,
+    extractPagesUrls,
+    extractPhones,
 };

@@ -1,13 +1,12 @@
 const { JSDOM } = require('jsdom');
 const $init = require('jquery');
-const { extractCharacteristics } = require('./get-phone-parameters');
-const {
-    addEntries,
-} = require('../../insert-data/insert-data.js');
 
-const extractPhoneDetails = async (phoneUrls) => {
+const { extractCharacteristics } = require('./get-phone-parameters');
+const { addEntries } = require('../../insert-data/insert-data.js');
+
+const extractPhoneDetails = async (phonesUrls) => {
     const characteristicsToInsert =
-        await Promise.all(phoneUrls.map(async (url) => {
+        await Promise.all(phonesUrls.map(async (url) => {
             const dom = await JSDOM.fromURL(url);
             const $ = $init(dom.window);
 
@@ -18,13 +17,13 @@ const extractPhoneDetails = async (phoneUrls) => {
                 $('.tab.tab-characteristics .table-characteristics tr')
             );
 
-            characteristicsList.forEach((characteristics, indx) => {
-                const tokens = extractCharacteristics([
+            characteristicsList.forEach((characteristics) => {
+                const params = extractCharacteristics([
                     $(characteristics).children()[0].innerHTML,
                     $(characteristics).children()[1].innerHTML,
                 ]);
-                if (tokens) {
-                    characteristicsObj[tokens[0]] = tokens[1];
+                if (params) {
+                    characteristicsObj[params[0]] = params[1];
                 }
             });
             return characteristicsObj;
