@@ -1,16 +1,13 @@
 const { JSDOM } = require('jsdom');
 const $init = require('jquery');
-const { Characteristics } = require('./characteristics-constructor');
 const { extractCharacteristics } = require('./get-phone-parameters');
 const {
     addEntries,
 } = require('../../insert-data/insert-data.js');
 
 const extractPhoneDetails = async (phoneUrls) => {
-    console.log('extractPhoneDetails '.repeat(5));
-
-    return (await Promise.all(phoneUrls.map(async (url) => {
-        try {
+    const characteristicsToInsert =
+        await Promise.all(phoneUrls.map(async (url) => {
             const dom = await JSDOM.fromURL(url);
             const $ = $init(dom.window);
 
@@ -26,19 +23,15 @@ const extractPhoneDetails = async (phoneUrls) => {
                     $(characteristics).children()[0].innerHTML,
                     $(characteristics).children()[1].innerHTML,
                 ]);
-
                 if (tokens) {
                     characteristicsObj[tokens[0]] = tokens[1];
                 }
             });
-            addEntries(characteristicsObj);
-            return;
-        } catch (err) {
-            console.log('-'.repeat(30));
-            console.log(err);
-            console.log('-'.repeat(30));
-        }
-    })))();
+            return characteristicsObj;
+        }));
+
+    addEntries(characteristicsToInsert);
+    return;
 };
 
 module.exports = {
