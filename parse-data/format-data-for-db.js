@@ -1,5 +1,4 @@
 const formatedDataForDB = (obj, store) => {
-    // console.log(obj);
     const deltailsModelObj = {
         price: obj.price,
         cpu: obj.cpu,
