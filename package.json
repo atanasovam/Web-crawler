@@ -20,12 +20,14 @@
   },
   "homepage": "https://github.com/atanasovam/Web-crawler#readme",
   "dependencies": {
+    "init": "^0.1.2",
     "jquery": "^3.3.1",
     "jsdom": "^11.6.2",
     "mysql": "github:mysqljs/mysql",
     "mysql2": "^1.5.2",
     "sequelize": "^4.35.1",
     "sequelize-auto-migrations": "^1.0.2",
-    "sequelize-cli": "^4.0.0"
+    "sequelize-cli": "^4.0.0",
+    "yarn": "^1.5.1"
   }
 }

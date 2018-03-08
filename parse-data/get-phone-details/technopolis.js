@@ -1,7 +1,8 @@
 const { JSDOM } = require('jsdom');
 const $init = require('jquery');
 
-const { extractCharacteristics } = require('./get-phone-parameters');
+const { extractCharacteristics } = require('./parameters');
+const { formatedDataForDB } = require('../format-data-for-db');
 const { addEntries } = require('../../insert-data/insert-data.js');
 
 const extractPhoneDetails = async (phonesUrls) => {
@@ -17,19 +18,24 @@ const extractPhoneDetails = async (phonesUrls) => {
                 $('.tab.tab-characteristics .table-characteristics tr')
             );
 
-            characteristicsList.forEach((characteristics) => {
-                const params = extractCharacteristics([
-                    $(characteristics).children()[0].innerHTML,
-                    $(characteristics).children()[1].innerHTML,
-                ]);
-                if (params) {
-                    characteristicsObj[params[0]] = params[1];
-                }
-            });
+            ((list) => {
+                characteristicsList.forEach((characteristics) => {
+                    const params = extractCharacteristics([
+                        $(characteristics).children()[0].innerHTML,
+                        $(characteristics).children()[1].innerHTML,
+                    ]);
+                    if (params) {
+                        characteristicsObj[params[0]] = params[1];
+                    }
+                });
+            })(characteristicsList);
+
             return characteristicsObj;
         }));
 
-    addEntries(characteristicsToInsert);
+    const formatedData = formatedDataForDB(characteristicsToInsert);
+    console.log(formatedData);
+    // addEntries(formatedData);
     return;
 };
 
