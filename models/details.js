@@ -1,49 +1,40 @@
 module.exports = (sequelize, DataTypes) => {
     const Details = sequelize.define('Details', {
-        price: {
+        id: {
             type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+        price: {
+            type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                notNull: true,
-                min: 2,
-                max: 10,
-            },
         },
         cpu: {
-            type: DataTypes.STRING(10),
+            type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                notNull: true,
-                min: 2,
-                max: 10,
-            },
         },
         ram: {
-            type: DataTypes.STRING(10),
+            type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                notNull: true,
-                min: 2,
-                max: 10,
-            },
         },
         os: {
-            type: DataTypes.STRING(10),
+            type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                notNull: true,
-                min: 2,
-                max: 10,
-            },
         },
-    });
+    }, {});
 
     Details.associate = (models) => {
         const {
             Phones,
         } = models;
 
-        Details.hasOne(Phones);
+        Details.belongsTo(Phones, {
+            foreignKey: {
+                foreignKey: 'fk_phones',
+                allowNull: false,
+            },
+            onDelete: 'CASCADE',
+        });
     };
 
     return Details;

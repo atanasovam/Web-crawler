@@ -1,24 +1,19 @@
 module.exports = (sequelize, DataTypes) => {
     const Phones = sequelize.define('Phones', {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
         brand: {
-            type: DataTypes.STRING(20),
+            type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                notNull: true,
-                min: 5,
-                max: 20,
-            },
         },
         model: {
-            type: DataTypes.STRING(10),
+            type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                notNull: true,
-                min: 2,
-                max: 10,
-            },
         },
-    });
+    }, {});
 
     Phones.associate = (models) => {
         const {
@@ -26,10 +21,22 @@ module.exports = (sequelize, DataTypes) => {
             Details,
         } = models;
 
-        Phones.hasOne(Store);
-        Store.hasMany(Phones);
+        Phones.belongsTo(Details, {
+            foreignKey: {
+                foreignKey: 'fk_details',
+                allowNull: false,
+            },
+            onDelete: 'CASCADE',
+        });
 
-        Phones.hasOne(Details);
+        Phones.belongsTo(Store, {
+            foreignKey: {
+                foreignKey: 'fk_store',
+                allowNull: false,
+            },
+            through: 'phonesStores',
+            onDelete: 'CASCADE',
+        });
     };
 
     return Phones;

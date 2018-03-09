@@ -4,46 +4,25 @@
             "tableName": "Details",
             "schema": {
                 "id": {
-                    "allowNull": false,
                     "primaryKey": true,
                     "autoIncrement": true,
                     "seqType": "Sequelize.INTEGER"
                 },
                 "price": {
                     "allowNull": false,
-                    "validate": {
-                        "notNull": true,
-                        "min": 2,
-                        "max": 10
-                    },
-                    "seqType": "Sequelize.INTEGER"
+                    "seqType": "Sequelize.STRING"
                 },
                 "cpu": {
                     "allowNull": false,
-                    "validate": {
-                        "notNull": true,
-                        "min": 2,
-                        "max": 10
-                    },
-                    "seqType": "Sequelize.STRING(10)"
+                    "seqType": "Sequelize.STRING"
                 },
                 "ram": {
                     "allowNull": false,
-                    "validate": {
-                        "notNull": true,
-                        "min": 2,
-                        "max": 10
-                    },
-                    "seqType": "Sequelize.STRING(10)"
+                    "seqType": "Sequelize.STRING"
                 },
                 "os": {
                     "allowNull": false,
-                    "validate": {
-                        "notNull": true,
-                        "min": 2,
-                        "max": 10
-                    },
-                    "seqType": "Sequelize.STRING(10)"
+                    "seqType": "Sequelize.STRING"
                 },
                 "createdAt": {
                     "allowNull": false,
@@ -54,12 +33,13 @@
                     "seqType": "Sequelize.DATE"
                 },
                 "PhoneId": {
-                    "allowNull": true,
+                    "foreignKey": "fk_phones",
+                    "allowNull": false,
                     "references": {
                         "model": "Phones",
                         "key": "id"
                     },
-                    "onDelete": "SET NULL",
+                    "onDelete": "CASCADE",
                     "onUpdate": "CASCADE",
                     "seqType": "Sequelize.INTEGER"
                 }
@@ -70,28 +50,17 @@
             "tableName": "Phones",
             "schema": {
                 "id": {
-                    "allowNull": false,
                     "primaryKey": true,
                     "autoIncrement": true,
                     "seqType": "Sequelize.INTEGER"
                 },
                 "brand": {
                     "allowNull": false,
-                    "validate": {
-                        "notNull": true,
-                        "min": 5,
-                        "max": 20
-                    },
-                    "seqType": "Sequelize.STRING(20)"
+                    "seqType": "Sequelize.STRING"
                 },
                 "model": {
                     "allowNull": false,
-                    "validate": {
-                        "notNull": true,
-                        "min": 2,
-                        "max": 10
-                    },
-                    "seqType": "Sequelize.STRING(10)"
+                    "seqType": "Sequelize.STRING"
                 },
                 "createdAt": {
                     "allowNull": false,
@@ -102,22 +71,24 @@
                     "seqType": "Sequelize.DATE"
                 },
                 "DetailId": {
-                    "allowNull": true,
+                    "foreignKey": "fk_details",
+                    "allowNull": false,
                     "references": {
                         "model": "Details",
                         "key": "id"
                     },
-                    "onDelete": "SET NULL",
+                    "onDelete": "CASCADE",
                     "onUpdate": "CASCADE",
                     "seqType": "Sequelize.INTEGER"
                 },
                 "StoreId": {
-                    "allowNull": true,
+                    "foreignKey": "fk_store",
+                    "allowNull": false,
                     "references": {
                         "model": "Stores",
                         "key": "id"
                     },
-                    "onDelete": "SET NULL",
+                    "onDelete": "CASCADE",
                     "onUpdate": "CASCADE",
                     "seqType": "Sequelize.INTEGER"
                 }
@@ -128,19 +99,13 @@
             "tableName": "Stores",
             "schema": {
                 "id": {
-                    "allowNull": false,
                     "primaryKey": true,
                     "autoIncrement": true,
                     "seqType": "Sequelize.INTEGER"
                 },
                 "name": {
                     "allowNull": false,
-                    "validate": {
-                        "notNull": true,
-                        "min": 5,
-                        "max": 20
-                    },
-                    "seqType": "Sequelize.STRING(20)"
+                    "seqType": "Sequelize.STRING"
                 },
                 "createdAt": {
                     "allowNull": false,
@@ -149,14 +114,41 @@
                 "updatedAt": {
                     "allowNull": false,
                     "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "phonesStores": {
+            "tableName": "phonesStores",
+            "schema": {
+                "createdAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "undefined": {
+                    "foreignKey": "fk_phones",
+                    "allowNull": false,
+                    "unique": true,
+                    "primaryKey": true,
+                    "references": {
+                        "model": "Stores",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
                 },
                 "PhoneId": {
-                    "allowNull": true,
+                    "primaryKey": true,
                     "references": {
                         "model": "Phones",
                         "key": "id"
                     },
-                    "onDelete": "SET NULL",
+                    "onDelete": "CASCADE",
                     "onUpdate": "CASCADE",
                     "seqType": "Sequelize.INTEGER"
                 }
@@ -164,5 +156,5 @@
             "indexes": []
         }
     },
-    "revision": 3
+    "revision": 4
 }

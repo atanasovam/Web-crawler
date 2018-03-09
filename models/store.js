@@ -1,22 +1,30 @@
 module.exports = (sequelize, DataTypes) => {
     const Store = sequelize.define('Store', {
-        name: {
-            type: DataTypes.STRING(20),
-            allowNull: false,
-            validate: {
-                notNull: true,
-                min: 5,
-                max: 20,
-            },
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
         },
-    });
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+    }, {});
 
     Store.associate = (models) => {
         const {
             Phones,
         } = models;
 
-        Store.hasOne(Phones);
+        Store.belongsToMany(Phones, {
+            foreignKey: {
+                foreignKey: 'fk_phones',
+                allowNull: false,
+                unique: true,
+            },
+            through: 'phonesStores',
+            onDelete: 'CASCADE',
+        });
     };
 
     return Store;

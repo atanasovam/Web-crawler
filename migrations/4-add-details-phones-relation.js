@@ -5,39 +5,35 @@ var Sequelize = require('sequelize');
 /**
  * Actions summary:
  *
- * dropTable "Brands"
- * addColumn "brand" to table "Phones"
+ * addColumn "PhoneId" to table "Details"
  *
  **/
 
 var info = {
-    "revision": 2,
+    "revision": 4,
     "name": "noname",
-    "created": "2018-03-06T10:08:23.469Z",
+    "created": "2018-03-09T13:53:27.384Z",
     "comment": ""
 };
 
 var migrationCommands = [{
-        fn: "dropTable",
-        params: ["Brands"]
-    },
-    {
-        fn: "addColumn",
-        params: [
-            "Phones",
-            "brand",
-            {
-                "type": Sequelize.STRING(20),
-                "validate": {
-                    "notNull": true,
-                    "min": 5,
-                    "max": 20
-                },
-                "allowNull": false
-            }
-        ]
-    }
-];
+    fn: "addColumn",
+    params: [
+        "Details",
+        "PhoneId",
+        {
+            "type": Sequelize.INTEGER,
+            "onUpdate": "CASCADE",
+            "onDelete": "CASCADE",
+            "references": {
+                "model": "Phones",
+                "key": "id"
+            },
+            "allowNull": false,
+            "foreignKey": "fk_phones"
+        }
+    ]
+}];
 
 module.exports = {
     pos: 0,
