@@ -14,7 +14,7 @@ var Sequelize = require('sequelize');
 var info = {
     "revision": 1,
     "name": "noname",
-    "created": "2018-03-09T13:50:44.565Z",
+    "created": "2018-03-10T11:40:06.392Z",
     "comment": ""
 };
 
@@ -26,7 +26,8 @@ var migrationCommands = [{
                 "id": {
                     "type": Sequelize.INTEGER,
                     "autoIncrement": true,
-                    "primaryKey": true
+                    "primaryKey": true,
+                    "allowNull": false
                 },
                 "price": {
                     "type": Sequelize.STRING,
@@ -64,7 +65,8 @@ var migrationCommands = [{
                 "id": {
                     "type": Sequelize.INTEGER,
                     "autoIncrement": true,
-                    "primaryKey": true
+                    "primaryKey": true,
+                    "allowNull": false
                 },
                 "brand": {
                     "type": Sequelize.STRING,
@@ -94,7 +96,8 @@ var migrationCommands = [{
                 "id": {
                     "type": Sequelize.INTEGER,
                     "autoIncrement": true,
-                    "primaryKey": true
+                    "primaryKey": true,
+                    "allowNull": false
                 },
                 "name": {
                     "type": Sequelize.STRING,

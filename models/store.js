@@ -1,10 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
     const Store = sequelize.define('Store', {
-        id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true,
-        },
         name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -16,13 +11,8 @@ module.exports = (sequelize, DataTypes) => {
             Phones,
         } = models;
 
-        Store.belongsToMany(Phones, {
-            foreignKey: {
-                foreignKey: 'fk_phones',
-                allowNull: false,
-                unique: true,
-            },
-            through: 'phonesStores',
+        Store.belongsTo(Phones, {
+            foreignKey: 'fk_phones',
             onDelete: 'CASCADE',
         });
     };

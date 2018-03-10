@@ -1,10 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
     const Details = sequelize.define('Details', {
-        id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true,
-        },
         price: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -29,10 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         } = models;
 
         Details.belongsTo(Phones, {
-            foreignKey: {
-                foreignKey: 'fk_phones',
-                allowNull: false,
-            },
+            foreignKey: 'fk_phones',
             onDelete: 'CASCADE',
         });
     };
