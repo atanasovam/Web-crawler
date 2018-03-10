@@ -7,10 +7,10 @@ const { addEntries } = require('../../insert-data/insert-data.js');
 
 const extractPhoneDetailsT = async (phonesUrls) => {
     return await Promise.all(phonesUrls.map(async (url) => {
-        const dom = await JSDOM.fromURL(phonesUrls[0]);
+        const dom = await JSDOM.fromURL(url);
         const $ = $init(dom.window);
 
-        const price = $('.price.new-price .priceValue').text();
+        const price = $('.price.new-price .priceValue')[0].textContent;
         const characteristicsObj = { price: price };
 
         const characteristicsList = Array.from(

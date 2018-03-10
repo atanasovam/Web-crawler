@@ -1,12 +1,8 @@
 const {
-    details,
-} = require('../models/details.js');
-const {
-    phones,
-} = require('../models/phones.js');
-const {
-    store,
-} = require('../models/store.js');
+    Brand,
+    Phone,
+    Store,
+} = require('../models');
 
 const addEntries = async (entriesObj) => {
     console.log(entriesObj);
