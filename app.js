@@ -26,8 +26,8 @@ const pagesSelectorSmartphone = '.products li article div:not([class]) a';
     await extractPhoneDetailsT(technopolisPhones);
 
     /** Smartphone.bg */
-    const smartphonePhones =
-        await extractPagesUrls(smartphoneUrl, pagesSelectorSmartphone);
+    // const smartphonePhones =
+    //     await extractPagesUrls(smartphoneUrl, pagesSelectorSmartphone);
 
-    await extractPhoneDetailsS(smartphonePhones);
+    // await extractPhoneDetailsS(smartphonePhones);
 })();

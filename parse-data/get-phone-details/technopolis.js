@@ -11,7 +11,10 @@ const extractPhoneDetailsT = async (phonesUrls) => {
         const $ = $init(dom.window);
 
         const price = $('.price.new-price .priceValue')[0].textContent;
-        const characteristicsObj = { price: price };
+        const characteristicsObj = {
+            price: price,
+            url: url,
+        };
 
         const characteristicsList = Array.from(
             $('.tab.tab-characteristics .table-characteristics tr')

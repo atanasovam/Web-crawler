@@ -1,5 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
     const Phones = sequelize.define('Phones', {
+        url: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         brand: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -8,12 +12,16 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-    }, {});
+    }, {
+            indexes: [{
+                unique: true,
+                fields: ['url'],
+            }],
+        });
 
     Phones.associate = (models) => {
         const {
             Store,
-            Details,
         } = models;
 
         Phones.belongsTo(Store, {

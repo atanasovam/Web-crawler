@@ -22,6 +22,7 @@ const extractPhoneDetailsS = async (phonesUrls) => {
         };
 
         const characteristicsObj = {
+            url: url,
             price: price,
             brand: brand,
         };
@@ -55,7 +56,10 @@ const extractPhoneDetailsS = async (phonesUrls) => {
         const formatedData =
             formatedDataForDB(characteristicsObj, 'SmartphoneBg');
 
-        addEntries(formatedData);
+        if (formatedData) {
+            addEntries(formatedData);
+        }
+
         return;
     }));
 };

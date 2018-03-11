@@ -55,6 +55,10 @@
                     "autoIncrement": true,
                     "seqType": "Sequelize.INTEGER"
                 },
+                "url": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING"
+                },
                 "brand": {
                     "allowNull": false,
                     "seqType": "Sequelize.STRING"
@@ -70,29 +74,19 @@
                 "updatedAt": {
                     "allowNull": false,
                     "seqType": "Sequelize.DATE"
-                },
-                "fk_details": {
-                    "allowNull": true,
-                    "references": {
-                        "model": "Details",
-                        "key": "id"
-                    },
-                    "onDelete": "CASCADE",
-                    "onUpdate": "CASCADE",
-                    "seqType": "Sequelize.INTEGER"
-                },
-                "fk_store": {
-                    "allowNull": true,
-                    "references": {
-                        "model": "Stores",
-                        "key": "id"
-                    },
-                    "onDelete": "CASCADE",
-                    "onUpdate": "CASCADE",
-                    "seqType": "Sequelize.INTEGER"
                 }
             },
-            "indexes": []
+            "indexes": {
+                "0381c75c415fd98a4486b76865b6ed6549192073": {
+                    "unique": true,
+                    "fields": [
+                        "url"
+                    ],
+                    "options": {
+                        "indicesType": "UNIQUE"
+                    }
+                }
+            }
         },
         "Stores": {
             "tableName": "Stores",
@@ -116,8 +110,18 @@
                     "seqType": "Sequelize.DATE"
                 }
             },
-            "indexes": []
+            "indexes": {
+                "0ff570737e17d9fa187078048b653dc06d87ac45": {
+                    "unique": true,
+                    "fields": [
+                        "name"
+                    ],
+                    "options": {
+                        "indicesType": "UNIQUE"
+                    }
+                }
+            }
         }
     },
-    "revision": 5
+    "revision": 2
 }

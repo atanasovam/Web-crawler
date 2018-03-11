@@ -2,10 +2,14 @@ module.exports = (sequelize, DataTypes) => {
     const Store = sequelize.define('Store', {
         name: {
             type: DataTypes.STRING,
-            // unique: true,
             allowNull: false,
         },
-    }, {});
+    }, {
+            indexes: [{
+                unique: true,
+                fields: ['name'],
+            }],
+        });
 
     Store.associate = (models) => {
     };

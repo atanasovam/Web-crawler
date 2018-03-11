@@ -55,6 +55,10 @@
                     "autoIncrement": true,
                     "seqType": "Sequelize.INTEGER"
                 },
+                "url": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING"
+                },
                 "brand": {
                     "allowNull": false,
                     "seqType": "Sequelize.STRING"
@@ -82,7 +86,17 @@
                     "seqType": "Sequelize.INTEGER"
                 }
             },
-            "indexes": []
+            "indexes": {
+                "0381c75c415fd98a4486b76865b6ed6549192073": {
+                    "unique": true,
+                    "fields": [
+                        "url"
+                    ],
+                    "options": {
+                        "indicesType": "UNIQUE"
+                    }
+                }
+            }
         },
         "Stores": {
             "tableName": "Stores",
@@ -106,8 +120,18 @@
                     "seqType": "Sequelize.DATE"
                 }
             },
-            "indexes": []
+            "indexes": {
+                "0ff570737e17d9fa187078048b653dc06d87ac45": {
+                    "unique": true,
+                    "fields": [
+                        "name"
+                    ],
+                    "options": {
+                        "indicesType": "UNIQUE"
+                    }
+                }
+            }
         }
     },
-    "revision": 6
+    "revision": 3
 }
