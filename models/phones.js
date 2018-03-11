@@ -16,11 +16,6 @@ module.exports = (sequelize, DataTypes) => {
             Details,
         } = models;
 
-        Phones.belongsTo(Details, {
-            foreignKey: 'fk_details',
-            onDelete: 'CASCADE',
-        });
-
         Phones.belongsTo(Store, {
             foreignKey: 'fk_store',
             onDelete: 'CASCADE',

@@ -6,15 +6,15 @@ var Sequelize = require('sequelize');
  * Actions summary:
  *
  * createTable "Details", deps: []
- * createTable "Phones", deps: []
  * createTable "Stores", deps: []
+ * createTable "Phones", deps: [Details, Stores]
  *
  **/
 
 var info = {
     "revision": 1,
     "name": "noname",
-    "created": "2018-03-10T11:40:06.392Z",
+    "created": "2018-03-10T20:49:36.831Z",
     "comment": ""
 };
 
@@ -60,6 +60,33 @@ var migrationCommands = [{
     {
         fn: "createTable",
         params: [
+            "Stores",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "name": {
+                    "type": Sequelize.STRING,
+                    "allowNull": false
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
             "Phones",
             {
                 "id": {
@@ -83,33 +110,26 @@ var migrationCommands = [{
                 "updatedAt": {
                     "type": Sequelize.DATE,
                     "allowNull": false
-                }
-            },
-            {}
-        ]
-    },
-    {
-        fn: "createTable",
-        params: [
-            "Stores",
-            {
-                "id": {
+                },
+                "fk_details": {
                     "type": Sequelize.INTEGER,
-                    "autoIncrement": true,
-                    "primaryKey": true,
-                    "allowNull": false
+                    "onUpdate": "CASCADE",
+                    "onDelete": "CASCADE",
+                    "references": {
+                        "model": "Details",
+                        "key": "id"
+                    },
+                    "allowNull": true
                 },
-                "name": {
-                    "type": Sequelize.STRING,
-                    "allowNull": false
-                },
-                "createdAt": {
-                    "type": Sequelize.DATE,
-                    "allowNull": false
-                },
-                "updatedAt": {
-                    "type": Sequelize.DATE,
-                    "allowNull": false
+                "fk_store": {
+                    "type": Sequelize.INTEGER,
+                    "onUpdate": "CASCADE",
+                    "onDelete": "CASCADE",
+                    "references": {
+                        "model": "Stores",
+                        "key": "id"
+                    },
+                    "allowNull": true
                 }
             },
             {}

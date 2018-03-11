@@ -5,36 +5,50 @@ var Sequelize = require('sequelize');
 /**
  * Actions summary:
  *
- * removeColumn "PhoneId" from table "Stores"
- * addColumn "fk_phones" to table "Stores"
+ * changeColumn "brand" on table "Phones"
+ * changeColumn "model" on table "Phones"
+ * changeColumn "name" on table "Stores"
  *
  **/
 
 var info = {
-    "revision": 7,
+    "revision": 4,
     "name": "noname",
-    "created": "2018-03-10T11:44:05.606Z",
+    "created": "2018-03-10T22:17:08.698Z",
     "comment": ""
 };
 
 var migrationCommands = [{
-        fn: "removeColumn",
-        params: ["Stores", "PhoneId"]
+        fn: "changeColumn",
+        params: [
+            "Phones",
+            "brand",
+            {
+                "type": Sequelize.STRING,
+                "allowNull": true
+            }
+        ]
     },
     {
-        fn: "addColumn",
+        fn: "changeColumn",
+        params: [
+            "Phones",
+            "model",
+            {
+                "type": Sequelize.STRING,
+                "allowNull": true
+            }
+        ]
+    },
+    {
+        fn: "changeColumn",
         params: [
             "Stores",
-            "fk_phones",
+            "name",
             {
-                "type": Sequelize.INTEGER,
-                "onUpdate": "CASCADE",
-                "onDelete": "CASCADE",
-                "references": {
-                    "model": "Phones",
-                    "key": "id"
-                },
-                "allowNull": true
+                "type": Sequelize.STRING,
+                "allowNull": true,
+                "unique": true
             }
         ]
     }

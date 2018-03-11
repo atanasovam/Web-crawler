@@ -5,49 +5,61 @@ var Sequelize = require('sequelize');
 /**
  * Actions summary:
  *
- * addColumn "StoreId" to table "Phones"
- * addColumn "DetailId" to table "Phones"
+ * changeColumn "model" on table "Phones"
+ * changeColumn "brand" on table "Phones"
+ * changeColumn "name" on table "Stores"
+ * changeColumn "name" on table "Stores"
  *
  **/
 
 var info = {
-    "revision": 2,
+    "revision": 5,
     "name": "noname",
-    "created": "2018-03-10T11:40:34.139Z",
+    "created": "2018-03-10T23:48:18.585Z",
     "comment": ""
 };
 
 var migrationCommands = [{
-        fn: "addColumn",
+        fn: "changeColumn",
         params: [
             "Phones",
-            "StoreId",
+            "model",
             {
-                "type": Sequelize.INTEGER,
-                "onUpdate": "CASCADE",
-                "onDelete": "SET NULL",
-                "references": {
-                    "model": "Stores",
-                    "key": "id"
-                },
-                "allowNull": true
+                "type": Sequelize.STRING,
+                "allowNull": false
             }
         ]
     },
     {
-        fn: "addColumn",
+        fn: "changeColumn",
         params: [
             "Phones",
-            "DetailId",
+            "brand",
             {
-                "type": Sequelize.INTEGER,
-                "onUpdate": "CASCADE",
-                "onDelete": "SET NULL",
-                "references": {
-                    "model": "Details",
-                    "key": "id"
-                },
-                "allowNull": true
+                "type": Sequelize.STRING,
+                "allowNull": false
+            }
+        ]
+    },
+    {
+        fn: "changeColumn",
+        params: [
+            "Stores",
+            "name",
+            {
+                "type": Sequelize.STRING,
+                "allowNull": false
+            }
+        ]
+    },
+    {
+        fn: "changeColumn",
+        params: [
+            "Stores",
+            "name",
+            {
+                "type": Sequelize.STRING,
+                "allowNull": false
             }
         ]
     }
