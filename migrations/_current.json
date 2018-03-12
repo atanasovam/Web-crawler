@@ -32,16 +32,6 @@
                 "updatedAt": {
                     "allowNull": false,
                     "seqType": "Sequelize.DATE"
-                },
-                "fk_phones": {
-                    "allowNull": true,
-                    "references": {
-                        "model": "Phones",
-                        "key": "id"
-                    },
-                    "onDelete": "CASCADE",
-                    "onUpdate": "CASCADE",
-                    "seqType": "Sequelize.INTEGER"
                 }
             },
             "indexes": []
@@ -74,6 +64,16 @@
                 "updatedAt": {
                     "allowNull": false,
                     "seqType": "Sequelize.DATE"
+                },
+                "fk_details": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Details",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
                 },
                 "fk_store": {
                     "allowNull": true,
@@ -133,5 +133,5 @@
             }
         }
     },
-    "revision": 3
+    "revision": 9
 }

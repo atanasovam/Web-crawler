@@ -32,16 +32,6 @@
                 "updatedAt": {
                     "allowNull": false,
                     "seqType": "Sequelize.DATE"
-                },
-                "fk_phones": {
-                    "allowNull": true,
-                    "references": {
-                        "model": "Phones",
-                        "key": "id"
-                    },
-                    "onDelete": "CASCADE",
-                    "onUpdate": "CASCADE",
-                    "seqType": "Sequelize.INTEGER"
                 }
             },
             "indexes": []
@@ -64,6 +54,7 @@
                     "seqType": "Sequelize.STRING"
                 },
                 "model": {
+                    "unique": false,
                     "allowNull": false,
                     "seqType": "Sequelize.STRING"
                 },
@@ -74,6 +65,26 @@
                 "updatedAt": {
                     "allowNull": false,
                     "seqType": "Sequelize.DATE"
+                },
+                "fk_details": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Details",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "fk_store": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Stores",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
                 }
             },
             "indexes": {
@@ -123,5 +134,5 @@
             }
         }
     },
-    "revision": 2
+    "revision": 8
 }

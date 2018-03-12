@@ -1,8 +1,4 @@
 const formatedDataForDB = (obj, store) => {
-    const idObj = {
-        'Technopolis': 1,
-        'Smartphonebg': 2,
-    };
     const deltailsModelObj = {
         price: obj.price,
         cpu: obj.cpu,
@@ -17,7 +13,6 @@ const formatedDataForDB = (obj, store) => {
     };
 
     const storeModelObj = {
-        id: idObj[store],
         name: store,
     };
 

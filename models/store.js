@@ -9,6 +9,8 @@ module.exports = (sequelize, DataTypes) => {
                 unique: true,
                 fields: ['name'],
             }],
+            charset: 'utf8',
+            collate: 'utf8_unicode_ci',
         });
 
     Store.associate = (models) => {

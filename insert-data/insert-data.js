@@ -34,20 +34,21 @@ const addEntries = async (obj) => {
                 return;
             }
 
-            console.log(storeModelObj.id + '-'.repeat(10) + storeModelObj.name);
-            phonesModelObj.fk_store = storeModelObj.id;
-            console.log(storeModelObj.id + '-'.repeat(10) + storeModelObj.name);
-
-            const phones = (await Phones.create(phonesModelObj));
-            console.log(storeModelObj.id + '-'.repeat(10) + storeModelObj.name, 'phones');
-
-            await phones.save();
-            console.log(storeModelObj.id + '-'.repeat(10) + storeModelObj.name);
-
-            deltailsModelObj.fk_phones = phones.id;
-
             const details = (await Details.create(deltailsModelObj));
             await details.save();
+
+            let storeId = await Store.findCreateFind({
+                where: {
+                    name: storeModelObj.name,
+                },
+            });
+            storeId = storeId[0].dataValues.id;
+
+            phonesModelObj.fk_store = storeId;
+            phonesModelObj.fk_details = details.id;
+
+            const phones = (await Phones.create(phonesModelObj));
+            await phones.save();
 
             const exists = (await Store.findOne({
                 where: {
@@ -56,7 +57,7 @@ const addEntries = async (obj) => {
             }));
 
             if (exists) {
-                return;
+                // return;
             }
 
             const store = (await Store.create({
@@ -67,8 +68,9 @@ const addEntries = async (obj) => {
 
             return;
         } catch (error) {
-            console.log('Failed add! ' + phonesModelObj.url);
-            console.log(error);
+            console.log('Failed to add! --------------->>>'
+                + phonesModelObj.url);
+            console.warn(error);
         }
     })(obj);
 };

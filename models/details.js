@@ -16,17 +16,12 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-    }, {});
+    }, {
+            charset: 'utf8',
+            collate: 'utf8_unicode_ci',
+        });
 
     Details.associate = (models) => {
-        const {
-            Phones,
-        } = models;
-
-        Details.belongsTo(Phones, {
-            foreignKey: 'fk_phones',
-            onDelete: 'CASCADE',
-        });
     };
 
     return Details;

@@ -13,16 +13,24 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
     }, {
-            indexes: [{
-                unique: true,
-                fields: ['url'],
-            }],
+            // indexes: [{
+            //     unique: true,
+            //     fields: ['url'],
+            // }],
+            charset: 'utf8',
+            collate: 'utf8_unicode_ci',
         });
 
     Phones.associate = (models) => {
         const {
+            Details,
             Store,
         } = models;
+
+        Phones.belongsTo(Details, {
+            foreignKey: 'fk_details',
+            onDelete: 'CASCADE',
+        });
 
         Phones.belongsTo(Store, {
             foreignKey: 'fk_store',
