@@ -6,7 +6,7 @@ const {
 const sequelizeDbWrapper = require('./models/index');
 
 (async () => {
-    await runTechnopolis();
+    // await runTechnopolis();
     await runSmartphonebg();
 
     // await sequelizeDbWrapper.sequelize.close();

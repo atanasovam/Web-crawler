@@ -18,9 +18,11 @@ const runSmartphonebg = async () => {
 
     let smartphonePhones =
         await extractPagesUrls(smartphoneUrl, pagesSelectorSmartphone);
+
     smartphonePhones = Array.from(new Set(smartphonePhones));
 
-    await extractPhoneDetailsS(smartphonePhones);
+
+    await extractDetailsRecursively(await smartphonePhones, [], 'technopolis');
 };
 
 const runTechnopolis = async () => {
@@ -31,25 +33,27 @@ const runTechnopolis = async () => {
         await extractPagesUrls(technopolisUrl, pagesSelectorTechnopolis);
     const technopolisPhones = (await extractPhones(technopolisPages));
 
-    const ectractDetailsRecursively = async (arr, phones) => {
-        if (arr.length === 0) {
-            return;
-        }
-        const count = 5;
-        const currentElements = await arr.splice(0, count);
+    await extractDetailsRecursively(await technopolisPhones, [], 'technopolis');
+};
 
-        const phone = await Promise.all(currentElements
-            .map(async (phoneUrl) => {
+const extractDetailsRecursively = async (arr, phones, store) => {
+    if (arr.length === 0) {
+        return;
+    }
+    const count = 5;
+    const currentElements = await arr.splice(0, count);
+
+    const phone = await Promise.all(
+        currentElements.map(async (phoneUrl) => {
+            if (store === 'technopolis') {
                 return await extractPhoneDetailsT(phoneUrl);
-            }));
+            }
+            return await extractPhoneDetailsS(phoneUrl);
+        }));
 
-        // console.log(phone);
-        phones.push(...phone);
+    phones.push(...phone);
 
-        await ectractDetailsRecursively(arr, phones);
-    };
-
-    ectractDetailsRecursively(await technopolisPhones, []);
+    await extractDetailsRecursively(arr, phones);
 };
 
 module.exports = {
