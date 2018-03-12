@@ -3,10 +3,10 @@ const {
     runSmartphonebg,
 } = require('./run-crawlers/run');
 
-const sequelizeDbWrapper = require('./models/index');
+// const sequelizeDbWrapper = require('./models/index');
 
 (async () => {
-    // await runTechnopolis();
+    await runTechnopolis();
     await runSmartphonebg();
 
     // await sequelizeDbWrapper.sequelize.close();

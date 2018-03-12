@@ -1,11 +1,8 @@
-const Sequelize = require('sequelize');
-
 const {
     Details,
     Phones,
     Store,
 } = require('../models');
-// const { executeQuery } = require('./executeQuery');
 
 const addEntries = async (obj) => {
     const {
@@ -14,8 +11,7 @@ const addEntries = async (obj) => {
         storeModelObj,
     } = obj;
 
-
-    const addNewData = (async (dataToAdd) => {
+    (async (dataToAdd) => {
         try {
             phonesModelObj.url = decodeURIComponent(phonesModelObj.url);
 
@@ -31,15 +27,15 @@ const addEntries = async (obj) => {
             phonesModelObj.fk_store = storeId;
             phonesModelObj.fk_details = details.id;
 
-            const phones = (await Phones.create(phonesModelObj));
+            (await Phones.create(phonesModelObj));
 
-            const exists = (await Store.findOne({
+            (await Store.findOne({
                 where: {
                     id: storeModelObj.id,
                 },
             }));
 
-            const store = (await Store.findCreateFind({
+            (await Store.findCreateFind({
                 where: {
                     name: storeModelObj.name,
                 },

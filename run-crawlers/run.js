@@ -22,7 +22,10 @@ const runSmartphonebg = async () => {
     smartphonePhones = Array.from(new Set(smartphonePhones));
 
 
-    await extractDetailsRecursively(await smartphonePhones, [], 'technopolis');
+    await extractDetailsRecursively(smartphonePhones, [], 'smartphonebg');
+
+    console.log('Smartphonebg --->> finished!');
+    return;
 };
 
 const runTechnopolis = async () => {
@@ -33,7 +36,10 @@ const runTechnopolis = async () => {
         await extractPagesUrls(technopolisUrl, pagesSelectorTechnopolis);
     const technopolisPhones = (await extractPhones(technopolisPages));
 
-    await extractDetailsRecursively(await technopolisPhones, [], 'technopolis');
+    await extractDetailsRecursively(technopolisPhones, [], 'technopolis');
+
+    console.log('Technopolis --->> finished!');
+    return;
 };
 
 const extractDetailsRecursively = async (arr, phones, store) => {
@@ -53,7 +59,7 @@ const extractDetailsRecursively = async (arr, phones, store) => {
 
     phones.push(...phone);
 
-    await extractDetailsRecursively(arr, phones);
+    await extractDetailsRecursively(arr, phones, store);
 };
 
 module.exports = {
