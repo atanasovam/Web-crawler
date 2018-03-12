@@ -54,9 +54,9 @@ const extractPhoneDetailsS = async (url) => {
     const formatedData =
         formatedDataForDB(characteristicsObj, 'SmartphoneBg');
 
-    if (formatedData) {
+    // if (formatedData) {
         addEntries(formatedData);
-    }
+    // }
     return;
 };
 

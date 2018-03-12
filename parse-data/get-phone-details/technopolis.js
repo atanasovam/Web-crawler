@@ -35,9 +35,9 @@ const extractPhoneDetailsT = async (url) => {
     const formatedData =
         formatedDataForDB(characteristicsObj, 'Technopolis');
 
-    if (formatedData) {
+    // if (formatedData) {
         addEntries(formatedData);
-    }
+    // }
     return;
 };
 

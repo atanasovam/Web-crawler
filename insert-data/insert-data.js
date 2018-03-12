@@ -11,7 +11,8 @@ const addEntries = async (obj) => {
         storeModelObj,
     } = obj;
 
-    (async (dataToAdd) => {
+
+    const addNewData = (async (dataToAdd) => {
         try {
             phonesModelObj.url = decodeURIComponent(phonesModelObj.url);
 
@@ -27,15 +28,15 @@ const addEntries = async (obj) => {
             phonesModelObj.fk_store = storeId;
             phonesModelObj.fk_details = details.id;
 
-            (await Phones.create(phonesModelObj));
+            const phones = (await Phones.create(phonesModelObj));
 
-            (await Store.findOne({
+            const exists = (await Store.findOne({
                 where: {
                     id: storeModelObj.id,
                 },
             }));
 
-            (await Store.findCreateFind({
+            const store = (await Store.findCreateFind({
                 where: {
                     name: storeModelObj.name,
                 },
