@@ -16,6 +16,9 @@ const extractCharacteristics = (characteristics, store) => {
                         .trim();
                     return true;
                 case 'Оперативна памет':
+                    val = val
+                        .split(' ')
+                        .reduce((a, b) => a.concat(b));
                     key = 'ram';
                     return true;
                 case 'Операционна система':
@@ -77,6 +80,11 @@ const extractCharacteristics = (characteristics, store) => {
             ) {
                 val = 'No';
             }
+
+            val = val
+                .split(' ')
+                .reduce((a, b) => a.concat(b));
+
             return [key, val];
         }
 
