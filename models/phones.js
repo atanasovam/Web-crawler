@@ -1,5 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
     const Phones = sequelize.define('Phones', {
+        url: {
+            type: DataTypes.STRING(500),
+            allowNull: false,
+        },
         brand: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -12,9 +16,14 @@ module.exports = (sequelize, DataTypes) => {
 
     Phones.associate = (models) => {
         const {
-            Store,
             Details,
+            Store,
         } = models;
+
+        Phones.belongsTo(Details, {
+            foreignKey: 'fk_details',
+            onDelete: 'CASCADE',
+        });
 
         Phones.belongsTo(Store, {
             foreignKey: 'fk_store',

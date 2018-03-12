@@ -6,7 +6,7 @@ const { formatedDataForDB } = require('../format-data-for-db');
 const { addEntries } = require('../../insert-data/insert-data.js');
 
 const extractPhoneDetailsS = async (phonesUrls) => {
-    return await Promise.all(phonesUrls.map(async (url) => {
+    const all = await Promise.all(phonesUrls.map(async (url) => {
         const dom = await JSDOM.fromURL(url);
         const $ = $init(dom.window);
 
@@ -17,11 +17,11 @@ const extractPhoneDetailsS = async (phonesUrls) => {
             .attr('content');
 
         const displaySize = (val) => {
-            const rgx = /(^\d\.\d)|(^\d)/g;
-            return rgx.exec(val)[0];
+            return /(^\d\.\d)|(^\d)/g.exec(val)[0];
         };
 
         const characteristicsObj = {
+            url: url,
             price: price,
             brand: brand,
         };
@@ -55,9 +55,17 @@ const extractPhoneDetailsS = async (phonesUrls) => {
         const formatedData =
             formatedDataForDB(characteristicsObj, 'SmartphoneBg');
 
-        addEntries(formatedData);
-        return;
+        return formatedData;
     }));
+
+    all.forEach((params) => {
+        console.log(params);
+        if (params) {
+            addEntries(params);
+        }
+    });
+
+    return;
 };
 
 module.exports = {

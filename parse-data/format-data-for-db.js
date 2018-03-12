@@ -7,6 +7,7 @@ const formatedDataForDB = (obj, store) => {
     };
 
     const phonesModelObj = {
+        url: obj.url,
         brand: obj.brand,
         model: obj.model,
     };
@@ -14,6 +15,18 @@ const formatedDataForDB = (obj, store) => {
     const storeModelObj = {
         name: store,
     };
+
+    const vals = [
+        ...Object.values(deltailsModelObj),
+        ...Object.values(phonesModelObj),
+        ...Object.values(storeModelObj),
+    ]
+        .map((v) => v !== 'undefined')
+        .filter((v) => v !== true);
+
+    if (vals.length > 0) {
+        return false;
+    }
 
     return {
         deltailsModelObj,

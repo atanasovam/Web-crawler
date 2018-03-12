@@ -5,25 +5,25 @@ var Sequelize = require('sequelize');
 /**
  * Actions summary:
  *
- * changeColumn "model" on table "Phones"
- * changeColumn "brand" on table "Phones"
- * changeColumn "name" on table "Stores"
- * changeColumn "name" on table "Stores"
+ * changeColumn "os" on table "Details"
+ * changeColumn "ram" on table "Details"
+ * changeColumn "cpu" on table "Details"
+ * changeColumn "price" on table "Details"
  *
  **/
 
 var info = {
-    "revision": 5,
+    "revision": 7,
     "name": "noname",
-    "created": "2018-03-10T23:48:18.585Z",
+    "created": "2018-03-11T21:33:31.959Z",
     "comment": ""
 };
 
 var migrationCommands = [{
         fn: "changeColumn",
         params: [
-            "Phones",
-            "model",
+            "Details",
+            "os",
             {
                 "type": Sequelize.STRING,
                 "allowNull": false
@@ -33,8 +33,8 @@ var migrationCommands = [{
     {
         fn: "changeColumn",
         params: [
-            "Phones",
-            "brand",
+            "Details",
+            "ram",
             {
                 "type": Sequelize.STRING,
                 "allowNull": false
@@ -44,8 +44,8 @@ var migrationCommands = [{
     {
         fn: "changeColumn",
         params: [
-            "Stores",
-            "name",
+            "Details",
+            "cpu",
             {
                 "type": Sequelize.STRING,
                 "allowNull": false
@@ -55,8 +55,8 @@ var migrationCommands = [{
     {
         fn: "changeColumn",
         params: [
-            "Stores",
-            "name",
+            "Details",
+            "price",
             {
                 "type": Sequelize.STRING,
                 "allowNull": false

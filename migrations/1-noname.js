@@ -6,15 +6,17 @@ var Sequelize = require('sequelize');
  * Actions summary:
  *
  * createTable "Details", deps: []
+ * createTable "Phones", deps: []
  * createTable "Stores", deps: []
- * createTable "Phones", deps: [Details, Stores]
+ * addIndex ["url"] to table "Phones"
+ * addIndex ["name"] to table "Stores"
  *
  **/
 
 var info = {
     "revision": 1,
     "name": "noname",
-    "created": "2018-03-10T20:49:36.831Z",
+    "created": "2018-03-11T18:55:32.105Z",
     "comment": ""
 };
 
@@ -60,6 +62,41 @@ var migrationCommands = [{
     {
         fn: "createTable",
         params: [
+            "Phones",
+            {
+                "id": {
+                    "type": Sequelize.INTEGER,
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "allowNull": false
+                },
+                "url": {
+                    "type": Sequelize.STRING,
+                    "allowNull": false
+                },
+                "brand": {
+                    "type": Sequelize.STRING,
+                    "allowNull": false
+                },
+                "model": {
+                    "type": Sequelize.STRING,
+                    "allowNull": false
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "allowNull": false
+                },
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
             "Stores",
             {
                 "id": {
@@ -85,54 +122,21 @@ var migrationCommands = [{
         ]
     },
     {
-        fn: "createTable",
+        fn: "addIndex",
         params: [
-            "Phones",
+            "Phones", ["url"],
             {
-                "id": {
-                    "type": Sequelize.INTEGER,
-                    "autoIncrement": true,
-                    "primaryKey": true,
-                    "allowNull": false
-                },
-                "brand": {
-                    "type": Sequelize.STRING,
-                    "allowNull": false
-                },
-                "model": {
-                    "type": Sequelize.STRING,
-                    "allowNull": false
-                },
-                "createdAt": {
-                    "type": Sequelize.DATE,
-                    "allowNull": false
-                },
-                "updatedAt": {
-                    "type": Sequelize.DATE,
-                    "allowNull": false
-                },
-                "fk_details": {
-                    "type": Sequelize.INTEGER,
-                    "onUpdate": "CASCADE",
-                    "onDelete": "CASCADE",
-                    "references": {
-                        "model": "Details",
-                        "key": "id"
-                    },
-                    "allowNull": true
-                },
-                "fk_store": {
-                    "type": Sequelize.INTEGER,
-                    "onUpdate": "CASCADE",
-                    "onDelete": "CASCADE",
-                    "references": {
-                        "model": "Stores",
-                        "key": "id"
-                    },
-                    "allowNull": true
-                }
-            },
-            {}
+                "indicesType": "UNIQUE"
+            }
+        ]
+    },
+    {
+        fn: "addIndex",
+        params: [
+            "Stores", ["name"],
+            {
+                "indicesType": "UNIQUE"
+            }
         ]
     }
 ];

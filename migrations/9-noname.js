@@ -5,31 +5,25 @@ var Sequelize = require('sequelize');
 /**
  * Actions summary:
  *
- * addColumn "fk_store" to table "Phones"
+ * changeColumn "model" on table "Phones"
  *
  **/
 
 var info = {
-    "revision": 3,
+    "revision": 9,
     "name": "noname",
-    "created": "2018-03-11T18:56:03.751Z",
+    "created": "2018-03-12T00:17:36.841Z",
     "comment": ""
 };
 
 var migrationCommands = [{
-    fn: "addColumn",
+    fn: "changeColumn",
     params: [
         "Phones",
-        "fk_store",
+        "model",
         {
-            "type": Sequelize.INTEGER,
-            "onUpdate": "CASCADE",
-            "onDelete": "CASCADE",
-            "references": {
-                "model": "Stores",
-                "key": "id"
-            },
-            "allowNull": true
+            "type": Sequelize.STRING,
+            "allowNull": false
         }
     ]
 }];

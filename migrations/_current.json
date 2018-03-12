@@ -32,16 +32,6 @@
                 "updatedAt": {
                     "allowNull": false,
                     "seqType": "Sequelize.DATE"
-                },
-                "fk_phones": {
-                    "allowNull": true,
-                    "references": {
-                        "model": "Phones",
-                        "key": "id"
-                    },
-                    "onDelete": "CASCADE",
-                    "onUpdate": "CASCADE",
-                    "seqType": "Sequelize.INTEGER"
                 }
             },
             "indexes": []
@@ -54,6 +44,10 @@
                     "primaryKey": true,
                     "autoIncrement": true,
                     "seqType": "Sequelize.INTEGER"
+                },
+                "url": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING(1234)"
                 },
                 "brand": {
                     "allowNull": false,
@@ -70,6 +64,16 @@
                 "updatedAt": {
                     "allowNull": false,
                     "seqType": "Sequelize.DATE"
+                },
+                "fk_details": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Details",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
                 },
                 "fk_store": {
                     "allowNull": true,
@@ -106,8 +110,18 @@
                     "seqType": "Sequelize.DATE"
                 }
             },
-            "indexes": []
+            "indexes": {
+                "0ff570737e17d9fa187078048b653dc06d87ac45": {
+                    "unique": true,
+                    "fields": [
+                        "name"
+                    ],
+                    "options": {
+                        "indicesType": "UNIQUE"
+                    }
+                }
+            }
         }
     },
-    "revision": 6
+    "revision": 10
 }

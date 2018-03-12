@@ -19,14 +19,6 @@ module.exports = (sequelize, DataTypes) => {
     }, {});
 
     Details.associate = (models) => {
-        const {
-            Phones,
-        } = models;
-
-        Details.belongsTo(Phones, {
-            foreignKey: 'fk_phones',
-            onDelete: 'CASCADE',
-        });
     };
 
     return Details;
