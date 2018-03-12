@@ -31,21 +31,25 @@ const runTechnopolis = async () => {
         await extractPagesUrls(technopolisUrl, pagesSelectorTechnopolis);
     const technopolisPhones = (await extractPhones(technopolisPages));
 
-    const ectractDetailsRecursively = (async (arr, phones) => {
+    const ectractDetailsRecursively = async (arr, phones) => {
         if (arr.length === 0) {
             return;
         }
-        const count = 150;
+        const count = 5;
         const currentElements = await arr.splice(0, count);
 
         const phone = await Promise.all(currentElements
-            .map(async (laptopUrl) => await extractPhoneDetailsT(laptopUrl)));
+            .map(async (phoneUrl) => {
+                return await extractPhoneDetailsT(phoneUrl);
+            }));
 
-        console.log(phone);
+        // console.log(phone);
         phones.push(...phone);
 
         await ectractDetailsRecursively(arr, phones);
-    })(await technopolisPhones, []);
+    };
+
+    ectractDetailsRecursively(await technopolisPhones, []);
 };
 
 module.exports = {

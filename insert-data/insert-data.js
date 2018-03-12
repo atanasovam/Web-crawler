@@ -14,28 +14,12 @@ const addEntries = async (obj) => {
         storeModelObj,
     } = obj;
 
-    const checkExistance = async (phoneObj) => {
-        const res = await Phones.findOne({
-            where: {
-                url: phoneObj.url,
-            },
-        });
-
-        if (res) {
-            return false;
-        }
-        return true;
-    };
 
     const addNewData = (async (dataToAdd) => {
         try {
-            if (!checkExistance(dataToAdd)) {
-                console.log('AAAA'.repeat(30));
-                return;
-            }
+            phonesModelObj.url = decodeURIComponent(phonesModelObj.url);
 
             const details = (await Details.create(deltailsModelObj));
-            await details.save();
 
             let storeId = await Store.findCreateFind({
                 where: {
@@ -48,7 +32,6 @@ const addEntries = async (obj) => {
             phonesModelObj.fk_details = details.id;
 
             const phones = (await Phones.create(phonesModelObj));
-            await phones.save();
 
             const exists = (await Store.findOne({
                 where: {
@@ -56,15 +39,11 @@ const addEntries = async (obj) => {
                 },
             }));
 
-            if (exists) {
-                // return;
-            }
-
-            const store = (await Store.create({
-                name: storeModelObj.name,
+            const store = (await Store.findCreateFind({
+                where: {
+                    name: storeModelObj.name,
+                },
             }));
-
-            await store.save();
 
             return;
         } catch (error) {

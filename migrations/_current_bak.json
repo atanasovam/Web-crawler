@@ -54,7 +54,6 @@
                     "seqType": "Sequelize.STRING"
                 },
                 "model": {
-                    "unique": false,
                     "allowNull": false,
                     "seqType": "Sequelize.STRING"
                 },
@@ -134,5 +133,5 @@
             }
         }
     },
-    "revision": 8
+    "revision": 9
 }

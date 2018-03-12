@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
     const Phones = sequelize.define('Phones', {
         url: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(500),
             allowNull: false,
         },
         brand: {
@@ -12,14 +12,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-    }, {
-            // indexes: [{
-            //     unique: true,
-            //     fields: ['url'],
-            // }],
-            charset: 'utf8',
-            collate: 'utf8_unicode_ci',
-        });
+    }, {});
 
     Phones.associate = (models) => {
         const {

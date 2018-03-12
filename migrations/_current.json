@@ -47,7 +47,7 @@
                 },
                 "url": {
                     "allowNull": false,
-                    "seqType": "Sequelize.STRING"
+                    "seqType": "Sequelize.STRING(1234)"
                 },
                 "brand": {
                     "allowNull": false,
@@ -86,17 +86,7 @@
                     "seqType": "Sequelize.INTEGER"
                 }
             },
-            "indexes": {
-                "0381c75c415fd98a4486b76865b6ed6549192073": {
-                    "unique": true,
-                    "fields": [
-                        "url"
-                    ],
-                    "options": {
-                        "indicesType": "UNIQUE"
-                    }
-                }
-            }
+            "indexes": []
         },
         "Stores": {
             "tableName": "Stores",
@@ -133,5 +123,5 @@
             }
         }
     },
-    "revision": 9
+    "revision": 10
 }
