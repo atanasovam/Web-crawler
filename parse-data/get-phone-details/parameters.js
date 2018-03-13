@@ -34,11 +34,11 @@ const extractCharacteristics = (characteristics, store) => {
         let val = characteristics[1].trim();
 
         if (key === 'Екран') {
-            return ['display_size', val];
+            return ['display_size', val.toLowerCase()];
         }
 
         if (verifyParams(key)) {
-            return [key, val];
+            return [key, val.toLowerCase()];
         }
 
         return false;
@@ -85,7 +85,7 @@ const extractCharacteristics = (characteristics, store) => {
                 .split(' ')
                 .reduce((a, b) => a.concat(b));
 
-            return [key, val];
+            return [key, val.toLowerCase()];
         }
 
         return false;

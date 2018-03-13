@@ -1,10 +1,10 @@
-const sequelizeDbWrapper = require('../models/index');
+const sequelizeDbWrapper = require('../db/models/index');
 
 const {
     Details,
     Phones,
     Store,
-} = require('../models');
+} = require('../db/models');
 
 const resetDB = async () => {
     await Phones.destroy({

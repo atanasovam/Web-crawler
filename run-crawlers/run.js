@@ -46,7 +46,7 @@ const extractDetailsRecursively = async (arr, phones, store) => {
     if (arr.length === 0) {
         return;
     }
-    const count = 5;
+    const count = 2;
     const currentElements = await arr.splice(0, count);
 
     const phone = await Promise.all(

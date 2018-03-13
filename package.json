@@ -1,12 +1,12 @@
 {
-  "name": "Web-crawler",
+  "name": "web-crawler",
   "version": "1.0.0",
   "description": "Node.js and databases Teamwork assignment- https://in.thecamp.me/resource/-Project-Assignment/4Z2SvRlg/JS-Nov-17-Module-3/6qZhL%2BTF",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "reset": "node ./commands/reset-db.js",
-    "filter-by-ram": "node ./commands/filter-by-ram.js",
+    "statistics": "node ./commands/statistics.js",
     "add-migration": "node ./node_modules/sequelize-auto-migrations/bin/makemigration.js",
     "migrate": "./node_modules/.bin/sequelize db:migrate"
   },

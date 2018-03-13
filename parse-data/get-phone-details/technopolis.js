@@ -3,7 +3,7 @@ const $init = require('jquery');
 
 const { extractCharacteristics } = require('./parameters');
 const { formatedDataForDB } = require('../format-data-for-db');
-const { addEntries } = require('../../insert-data/insert-data.js');
+const { addEntries } = require('../../db/insert-data/insert-data.js');
 
 const extractPhoneDetailsT = async (url) => {
     const dom = await JSDOM.fromURL(url);
@@ -11,7 +11,7 @@ const extractPhoneDetailsT = async (url) => {
 
     const price = $('.price.new-price .priceValue')[0].textContent;
     const characteristicsObj = {
-        price: price,
+        price: +price,
         url: url,
     };
 
