@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
     const Phones = sequelize.define('Phones', {
         url: {
-            type: DataTypes.STRING(500),
+            type: DataTypes.STRING,
             allowNull: false,
         },
         brand: {

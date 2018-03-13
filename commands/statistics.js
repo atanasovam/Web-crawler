@@ -29,9 +29,7 @@ const search = async (col, parameter) => {
     } else if (col === 'price') {
         matchingIdArr = await Details.findAll({
             where: {
-                price: {
-                    $like: `%${parameter}%`,
-                },
+                price: parameter,
             },
         });
     }
@@ -39,16 +37,16 @@ const search = async (col, parameter) => {
     matchingIdArr = matchingIdArr.map((e) => e.dataValues.id);
 
     if (matchingIdArr.length === 0) {
-        console.log(' '.repeat(200));
+        console.log('');
         console.log(`We don't have any phones with this parameter. :(`);
-        console.log(' '.repeat(200));
+        console.log('');
 
         return;
     }
 
-    console.log(' '.repeat(200));
-    console.log('Your results...');
-    console.log(' '.repeat(200));
+    console.log(' ');
+    console.log(' '.repeat(12) + 'Your results...');
+    console.log('-'.repeat(40));
 
     Promise.all(matchingIdArr.map(async (id) => {
         try {
@@ -74,9 +72,11 @@ const search = async (col, parameter) => {
                 store: store.dataValues.name,
             };
 
-            console.log('-'.repeat(50) + '|');
-            console.log(result.brand + ' ' + result.model + ' ' + result.store);
-            console.log('-'.repeat(50) + '|');
+            console.log(' '.repeat(9) + 'Brand: ' + result.brand);
+            console.log(' '.repeat(9) + 'Model: ' + result.model);
+            console.log(' '.repeat(9) + 'Store: ' + result.store);
+
+            console.log('-'.repeat(40));
         } catch (err) {
             console.log(
                 `We don't have mobile phones with this parameters.. :(`
@@ -110,28 +110,28 @@ const filter = async () => {
         });
     }
 
-    matchingIdArr = matchingIdArr.map((e) => {
+    const idArr = matchingIdArr.map((e) => {
         if (e !== 'no') {
             return e.dataValues.id;
         }
         return false;
     });
 
-    if (matchingIdArr.length === 0) {
-        console.log(' '.repeat(200));
+    if (idArr.length === 0) {
+        console.log('');
         console.log(`We don't have any phones with this parameter. :(`);
-        console.log(' '.repeat(200));
+        console.log('');
 
         return;
     }
 
-    console.log(' '.repeat(200));
+    console.log('');
     console.log(
-        `Your results for ${col} with '${method}' ` +
+        `   Your results for ${col} with '${method}' ` +
         `operator and value ${value}`
     );
 
-    Promise.all(matchingIdArr.map(async (id) => {
+    Promise.all(idArr.map(async (id) => {
         try {
             const matchedPhone = await Phones.findOne({
                 where: {
@@ -145,15 +145,34 @@ const filter = async () => {
                 },
             });
 
+            const ram = await Details.findOne({
+                where: {
+                    id: id,
+                },
+            });
+
+            if (
+                ram.dataValues.ram === 'no' ||
+                ram.dataValues.ram[ram.dataValues.ram.length - 2]
+                    .toLowerCase() === 'm'
+            ) {
+                return;
+            }
+
             const result = {
                 brand: matchedPhone.dataValues.brand,
                 model: matchedPhone.dataValues.model,
+                ram: ram.dataValues.ram,
                 store: store.dataValues.name,
             };
 
-            console.log('-'.repeat(50) + '|');
-            console.log(result.brand + ' ' + result.model + ' ' + result.store);
-            console.log('-'.repeat(50) + '|');
+            console.log('-'.repeat(60));
+
+            console.log(' '.repeat(19) + 'RAM: ' + result.ram);
+            console.log('');
+            console.log(' '.repeat(19) + 'Brand: ' + result.brand);
+            console.log(' '.repeat(19) + 'Model: ' + result.model);
+            console.log(' '.repeat(19) + 'Store: ' + result.store);
         } catch (err) {
             console.log(' ');
         }
@@ -167,9 +186,9 @@ const order = async (parameter) => {
         ],
     });
 
-    console.log(' '.repeat(200));
-    console.log(`Your results ordered by ${parameter}...`);
-    console.log(' '.repeat(200));
+    console.log('');
+    console.log(' '.repeat(5) + `Your results ordered by ${parameter}...`);
+    console.log('-'.repeat(40));
 
     Promise.all(matchingIdArr.map(async (id) => {
         try {
@@ -178,9 +197,10 @@ const order = async (parameter) => {
                 model: id.dataValues.model,
             };
 
-            console.log('-'.repeat(50) + '|');
-            console.log(result.brand + ' ' + result.model);
-            console.log('-'.repeat(50) + '|');
+            console.log(' '.repeat(9) + 'Brand: ' + result.brand + '\n');
+            console.log(' '.repeat(9) + 'Model: ' + result.model + '\n');
+
+            console.log('-'.repeat(40));
         } catch (err) {
             console.log('');
         }
@@ -189,6 +209,10 @@ const order = async (parameter) => {
 
 const showAllData = async () => {
     const phoneArr = await Phones.findAll();
+
+    console.log(' ');
+    console.log(' '.repeat(12) + 'All available data:');
+    console.log('-'.repeat(40));
 
     Promise.all(phoneArr.map(async (phone) => {
         try {
@@ -213,14 +237,12 @@ const showAllData = async () => {
                 store: currStore.dataValues.name,
             };
 
-            console.log('-'.repeat(40));
-
-            console.log('Brand: ' + result.brand);
-            console.log('Model: ' + result.model);
-            console.log('Price: ' + result.price);
-            console.log('CPU: ' + result.cpu);
-            console.log('OS: ' + result.os);
-            console.log('Store: ' + result.store);
+            console.log(' '.repeat(9) + 'Brand: ' + result.brand);
+            console.log(' '.repeat(9) + 'Model: ' + result.model);
+            console.log(' '.repeat(9) + 'Price: ' + result.price);
+            console.log(' '.repeat(9) + 'CPU: ' + result.cpu);
+            console.log(' '.repeat(9) + 'OS: ' + result.os);
+            console.log(' '.repeat(9) + 'Store: ' + result.store);
 
             console.log('-'.repeat(40));
         } catch (err) {
