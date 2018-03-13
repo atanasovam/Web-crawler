@@ -1,12 +1,7 @@
-Node.js and databases Teamwork assignment- https://in.thecamp.me/resource/-Project-Assignment/4Z2SvRlg/JS-Nov-17-Module-3/6qZhL%2BTF
-
-
-
-
-
 # Web Crawler
 
-Individual project for @TelerikAcademy - JS track
+Node.js and databases Teamwork assignment- https://in.thecamp.me/resource/-Project-Assignment/4Z2SvRlg/JS-Nov-17-Module-3/6qZhL%2BTF
+
 
 ## App Description
 
@@ -21,12 +16,15 @@ Individual project for @TelerikAcademy - JS track
 
 #### npm run 
 
-  1. statistics (filter the data, prints the result)
-    * filter:ram:method:value
+  * statistics (filter the data, prints the result)
+  
+    * filter: ram :method:value
     * search:details_column:value
     * order-by-brand:value (asc | desc)
-  1. show-data (prints everything from the database)
-  1. reset (delete the crawled data)
+    
+  * show-data (prints everything from the database)
+  
+  * reset (delete the crawled data)
 
 
 ## Dependancies
