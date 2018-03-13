@@ -9,9 +9,12 @@ const extractPhoneDetailsT = async (url) => {
     const dom = await JSDOM.fromURL(url);
     const $ = $init(dom.window);
 
-    const price = $('.price.new-price .priceValue')[0].textContent;
+    let price = $('.price.new-price .priceValue')[0]
+        .textContent;
+    price = price.replace(/\s+/g, '');
+
     const characteristicsObj = {
-        price: +price,
+        price: price,
         url: url,
     };
 

@@ -9,8 +9,10 @@ const extractPhoneDetailsS = async (url) => {
     const dom = await JSDOM.fromURL(url);
     const $ = $init(dom.window);
 
-    const price = $('.price-container.update-price')
-        .attr('data-original-price');
+    const price = Number(
+        $('.price-container.update-price')
+            .attr('data-original-price')
+    );
 
     const brand = $($('#content article meta')[1])
         .attr('content');
@@ -21,7 +23,7 @@ const extractPhoneDetailsS = async (url) => {
 
     const characteristicsObj = {
         url: url,
-        price: +price,
+        price: price + '',
         brand: brand,
     };
 
