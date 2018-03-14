@@ -12,7 +12,7 @@ const addEntries = async (obj) => {
     } = obj;
 
 
-    const addNewData = (async (dataToAdd) => {
+    (async (dataToAdd) => {
         try {
             phonesModelObj.url = decodeURIComponent(phonesModelObj.url);
 
@@ -28,24 +28,25 @@ const addEntries = async (obj) => {
             phonesModelObj.fk_store = storeId;
             phonesModelObj.fk_details = details.id;
 
-            const phones = (await Phones.create(phonesModelObj));
+            await Phones.create(phonesModelObj);
 
-            const exists = (await Store.findOne({
+            await Store.findOne({
                 where: {
                     id: storeModelObj.id,
                 },
-            }));
+            });
 
-            const store = (await Store.findCreateFind({
+            await Store.findCreateFind({
                 where: {
                     name: storeModelObj.name,
                 },
-            }));
+            });
 
             return;
         } catch (error) {
-            console.log('Failed to add! --------------->>>'
-                + phonesModelObj.url);
+            console.log(
+                'Failed to add! --------------->>>' + phonesModelObj.url
+            );
             console.warn(error);
         }
     })(obj);

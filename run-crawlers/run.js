@@ -52,9 +52,9 @@ const extractDetailsRecursively = async (arr, phones, store) => {
     const phone = await Promise.all(
         currentElements.map(async (phoneUrl) => {
             if (store === 'technopolis') {
-                return await extractPhoneDetailsT(phoneUrl);
+                return extractPhoneDetailsT(phoneUrl);
             }
-            return await extractPhoneDetailsS(phoneUrl);
+            return extractPhoneDetailsS(phoneUrl);
         }));
 
     phones.push(...phone);
